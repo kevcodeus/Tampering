@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirm Order</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="card shadow mx-auto" style="max-width: 500px;">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Checkout</h4>
+            </div>
+            <div class="card-body text-center">
+                <img src="{{ product.image }}" class="img-fluid rounded mb-3" style="max-height: 150px;">
+                <h3>{{ product.name }}</h3>
+                <h2 class="text-success fw-bold my-3">${{ product.price }}</h2>
+                
+                <p class="text-muted">
+                    Please review your order details before proceeding.
+                </p>
+
+                <form action="/process_payment" method="POST">
+                    <input type="hidden" name="payment_token" value="{{ token }}">
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-warning btn-lg fw-bold">
+                            Pay ${{ product.price }} Now
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-muted small text-center">
+                Secure Payment Gateway &copy; 2024
+            </div>
+        </div>
+    </div>
+</body>
+</html>
